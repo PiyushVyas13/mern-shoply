@@ -7,7 +7,7 @@ let bodyParser = require("body-parser")
 const userRoute = require("./routes/users")
 const productRoute = require("./routes/products")
 const orderRoute = require('./routes/orders')
-
+require('dotenv').config({path: "./.env"})
 const User = require("./models/User")
 
 // mongoose.set("useNewUrlParser", true)
@@ -17,7 +17,7 @@ const User = require("./models/User")
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb+srv://mongo:mongo123@cluster0.s7yf8ga.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0") 
+mongoose.connect(process.env.MONGODB_URL) 
     .then(() => {
         console.log("datbase connected")
     }, error => {
